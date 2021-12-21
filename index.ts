@@ -1,9 +1,11 @@
 import * as minimist from "minimist";
+import {PelisController} from './controllers'
 
 function parseaParams(argv) {
   const resultado = minimist(argv);
-
-  return resultado;
+  if (resultado.search) {
+    return {search: resultado.search};
+  }
 }
 
 function main() {

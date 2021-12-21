@@ -1,1 +1,43 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "El padrino",
+    "tags": ["acción", "drama", "crimen"]
+  },
+
+  {
+    "id": 2,
+    "title": "Forrest Gump",
+    "tags": ["romance", "drama"]
+  },
+
+  {
+    "id": 3,
+    "title": "Matrix",
+    "tags": ["acción", "ciencia ficción"]
+  },
+
+  {
+    "id": 4,
+    "title": "El irlandés",
+    "tags": ["biografía", "drama", "crimen"]
+  },
+
+  {
+    "id": 5,
+    "title": "Ejército de los ladrones",
+    "tags": ["acción", "comedia", "crimen"]
+  },
+
+  {
+    "id": 6,
+    "title": "Joker",
+    "tags": ["thriller", "drama", "crimen"]
+  },
+
+  {
+    "id": 7,
+    "title": "Skyfall",
+    "tags": ["thriller", "acción", "aventura"]
+  }
+]

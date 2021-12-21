@@ -5,7 +5,7 @@ class PelisController {
   constructor() {
     this.data = new PelisCollection();
   }
-  async get(options) {
+  async get(options:any) {
     const todasLasPelis = await this.data.getAll();
       if (options.id) {
         return this.data.getById(options.id);
@@ -22,7 +22,7 @@ class PelisController {
     }
   
   async add(peli:Peli) {
-    this.data.add(peli)
+    return this.data.add(peli)
   };
   
 };

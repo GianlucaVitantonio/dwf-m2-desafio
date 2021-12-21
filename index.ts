@@ -3,15 +3,22 @@ import {PelisController} from './controllers'
 
 function parseaParams(argv) {
   const resultado = minimist(argv);
-  if (resultado.search) {
-    return {search: resultado.search};
+  return resultado;
+}
+
+function processOptions(params) {
+  const controller = new PelisController();
+  // parsear get
+  if (params._[0] == "get") {
+    return controller.get({ id: params._[1] }).then((res) => res)
   }
 }
 
 function main() {
+  
   const params = parseaParams(process.argv.slice(2));
-
-  console.log(params);
+  return processOptions(params).then(res => console.log(res))
+  
 }
 
 main();

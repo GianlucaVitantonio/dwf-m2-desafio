@@ -11,20 +11,25 @@ class PelisCollection {
   
   pelis: Peli[] = [];
   async getAll(): Promise<Peli[]> {
-    return await jsonfile.readFile(__dirname + "/pelis.json")
+   const pelis = await jsonfile.readFile(__dirname + "/pelis.json")
+   return pelis;
   };
      
   async getById (id:number) {
-    const todasLasPelis = await this.getAll();
-    return todasLasPelis.find ((item) => {
+    const todasLasPelis = await this.getAll()
+    return todasLasPelis.find((item) => {
       return item.id == id; 
-    })  
-  };
+    }) 
+   };  
+  
 
   async search (options:any) {
     const todasLasPelis = await this.getAll();
-    return todasLasPelis.forEach(peli => {
-      if (options.title) {
+    return todasLasPelis.filter(peli => {
+      if (options.title && options.tag) {
+        return peli.title.includes(options.title) && peli.tags.includes(options.tag)
+      }
+        else if (options.title) {
         return peli.title.includes(options.title) 
       } else if (options.tag) {
         return peli.tags.includes(options.tag)
@@ -37,8 +42,8 @@ class PelisCollection {
       if (peliExistente) {
         return false;
       } else {
-        // magia que agrega la pelicula a un objeto data
-        const data = peli
+        const data = jsonfile.readFileSync("./pelis.json");
+        data.push(peli);
         const promesaDos = jsonfile.writeFile("./pelis.json", data);
 
         return promesaDos.then(() => {
@@ -55,10 +60,4 @@ class PelisCollection {
 
   
   
-
-const pelis = new PelisCollection()
-const pelisNuevo = pelis.add({id: 80,
-  title: "TEST_TITLE",
-  tags: ["tt", "rr"]})
-pelisNuevo.then((res) => {console.log(res)})
 export { PelisCollection, Peli };
